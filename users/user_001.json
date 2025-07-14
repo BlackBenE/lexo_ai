@@ -1,0 +1,51 @@
+{
+  "user_id": "001",
+  "skills": {
+    "letters": {
+      "correct": 3,
+      "total": 5,
+      "accuracy": 0.6
+    }
+  },
+  "confusions": {
+    "I\u2192L": 1,
+    "Z\u2192S": 1
+  },
+  "history": [
+    {
+      "date": "2025-07-14",
+      "category": "letters",
+      "expected_answer": "K",
+      "child_answer": "k",
+      "correct": true
+    },
+    {
+      "date": "2025-07-14",
+      "category": "letters",
+      "expected_answer": "J",
+      "child_answer": "J",
+      "correct": true
+    },
+    {
+      "date": "2025-07-14",
+      "category": "letters",
+      "expected_answer": "H",
+      "child_answer": "H",
+      "correct": true
+    },
+    {
+      "date": "2025-07-14",
+      "category": "letters",
+      "expected_answer": "I",
+      "child_answer": "L",
+      "correct": false
+    },
+    {
+      "date": "2025-07-14",
+      "category": "letters",
+      "expected_answer": "Z",
+      "child_answer": "S",
+      "correct": false
+    }
+  ]
+}
