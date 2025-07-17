@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 USERS_DIR = "users"
-UPDATE_INTERVAL_DAYS = 1
+UPDATE_INTERVAL_DAYS = 0
 
 
 def init_twin_fields(twin):

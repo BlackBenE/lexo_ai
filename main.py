@@ -1,16 +1,12 @@
-import os
 import numpy as np
 import matplotlib.pyplot as plt
-import skimage.io
-import skimage.transform
 from datetime import datetime
 from sklearn.model_selection import train_test_split
 from twin_predictor import twin_to_dataset, train_prediction_model, predict_success
 from autoencoder import train_autoencoder, compute_reconstruction_errors
 from digital_twin import load_twin, save_twin, update_twin, init_twin_fields, apply_pending_updates_if_needed
 from features import extract_features_from_twin
-from sklearn.ensemble import RandomForestClassifier
-
+from utils import load_dataset, load_images
 
 # === Config ===
 IMAGE_REDUCED_SIZE = 64
@@ -23,32 +19,6 @@ def show_image(image):
     plt.imshow(image)
     plt.axis("off")
     plt.show()
-
-def load_dataset(folders):
-    filenames, labels, categories = [], [], []
-    for folder in folders:
-        folder_path = os.path.join(IMAGE_DIR, folder)
-        for filename in os.listdir(folder_path):
-            if filename.endswith('.png'):
-                full_path = os.path.join(folder_path, filename)
-                filenames.append(full_path)
-                labels.append(os.path.splitext(filename)[0])  # e.g. "A", "3", "dog"
-                categories.append(folder)  # e.g. "letters"
-    return filenames, labels, categories
-
-def load_images(filenames):
-    images = []
-    for filename in filenames:
-        image = skimage.io.imread(filename)
-        image = skimage.transform.resize(image, (IMAGE_REDUCED_SIZE, IMAGE_REDUCED_SIZE))
-        if image.ndim == 2:  # (64, 64)
-            image = np.stack([image]*3, axis=-1)
-        if image.shape[-1] == 1:  # (64, 64, 1)
-            image = np.repeat(image, 3, axis=-1)
-        if image.shape[-1] > 3:  # (64, 64, 4) RGBA
-            image = image[..., :3]
-        images.append(image)
-    return np.array(images)
 
 
 def run_prediction_analysis(twin):
