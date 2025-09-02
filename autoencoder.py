@@ -27,7 +27,6 @@ class Autoencoder(nn.Module):
 def train_autoencoder(images, epochs=50, lr=1e-3):
     
     images = images.astype(np.float32) / 255.0
-    print("images.shape:", images.shape)  # Ajout pour debug
     images_tensor = torch.tensor(images).view(-1, 64*64*3)
     
     
@@ -54,4 +53,4 @@ def compute_reconstruction_errors(model, images):
     with torch.no_grad():
         reconstructions = model(images_tensor)
         errors = ((reconstructions - images_tensor) ** 2).mean(dim=1)
-    return errors.numpy()  # un tableau avec une erreur par image
+    return errors.numpy()  

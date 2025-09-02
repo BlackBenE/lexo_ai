@@ -28,5 +28,4 @@ def predict_success(model, twin, category, expected_answer):
         prob = model.predict_proba(features)[0][1]
         return prob
     else:
-        # if the category is not found, return a default probability
         return 0.5
